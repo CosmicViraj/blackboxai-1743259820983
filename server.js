@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const socketio = require('socket.io');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -18,9 +19,30 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/freelancerD
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
+// Routes
+const authRoutes = require('./routes/auth.routes');
+const jobRoutes = require('./routes/job.routes');
+app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobRoutes);
+
 // Basic Route
 app.get('/', (req, res) => {
   res.send('Freelancer App API');
+});
+
+// JWT Middleware
+app.use((req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (!err) {
+        req.user = user;
+      }
+    });
+  }
+  next();
 });
 
 // Server Setup
