@@ -6,8 +6,8 @@ import './App.css';
 // Pages
 import Home from './pages/Home';
 import LoginNew from './pages/LoginNew';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import RegisterNew from './pages/RegisterNew';
+import DashboardNew from './pages/DashboardNew';
 import Jobs from './pages/Jobs';
 import Messages from './pages/Messages';
 import JobDetails from './pages/JobDetails';
@@ -27,8 +27,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginNew />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/register" element={<RegisterNew />} />
+              <Route path="/dashboard" element={<DashboardNew />} />
               <Route path="/jobs" element={<Jobs><JobList /></Jobs>} />
               <Route path="/jobs/:id" element={<JobDetails />} />
               <Route path="/messages" element={<Messages />} />
