@@ -26,9 +26,10 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     // Generate JWT token
+    const secret = process.env.JWT_SECRET || 'test-secret-key-12345';
     const token = jwt.sign(
       { userId: user._id, role: user.role },
-      process.env.JWT_SECRET,
+      secret,
       { expiresIn: '7d' }
     );
 
@@ -64,9 +65,10 @@ router.post('/login', async (req, res) => {
     }
 
     // Generate JWT token
+    const secret = process.env.JWT_SECRET || 'test-secret-key-12345';
     const token = jwt.sign(
       { userId: user._id, role: user.role },
-      process.env.JWT_SECRET,
+      secret,
       { expiresIn: '7d' }
     );
 
