@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const RegisterNew = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,6 @@ const RegisterNew = () => {
   });
   const [error, setError] = useState(null);
   const { register } = useAuth();
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -131,9 +130,9 @@ const RegisterNew = () => {
         </form>
         <div className="text-center text-sm">
           <span className="text-gray-600">Already have an account? </span>
-          <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
             Sign in
-          </a>
+          </Link>
         </div>
       </div>
     </div>
