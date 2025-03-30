@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
@@ -20,23 +20,21 @@ import JobList from './components/JobList';
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LoginNew />} />
-              <Route path="/register" element={<RegisterNew />} />
-              <Route path="/dashboard" element={<DashboardNew />} />
-              <Route path="/jobs" element={<Jobs><JobList /></Jobs>} />
-              <Route path="/jobs/:id" element={<JobDetails />} />
-              <Route path="/messages" element={<Messages />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginNew />} />
+            <Route path="/register" element={<RegisterNew />} />
+            <Route path="/dashboard" element={<DashboardNew />} />
+            <Route path="/jobs" element={<Jobs><JobList /></Jobs>} />
+            <Route path="/jobs/:id" element={<JobDetails />} />
+            <Route path="/messages" element={<Messages />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </AuthProvider>
   );
 }
